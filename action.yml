@@ -17,14 +17,14 @@ inputs:
   subgraph_name:
     description: The name of the subgraph to check. Only required in federated projects.
 
-env:
-  SCHEMA_SDL: ${{ inputs.schema }}
 
 runs:
   using: composite
   steps:
     - id: validate-args
       shell: bash
+      env:
+        SCHEMA_SDL: ${{ inputs.schema }}
       run: |
         : Handle the inputs.
 
