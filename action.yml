@@ -40,6 +40,8 @@ runs:
           exit 1
         else
 
+    - run: echo ${{ inputs.schema }}
+
     - id: download-cli
       shell: bash
       run: |
