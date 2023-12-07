@@ -25,6 +25,7 @@ inputs:
 runs:
   steps:
     - id: download-cli
+      shell: bash
       run: |
         : Download the Grafbase CLI
         curl -L https://unpkg.com/@grafbase/cli-x86_64-unknown-linux-musl/grafbase > grafbase
@@ -33,6 +34,7 @@ runs:
         ./grafbase --help
 
     - id: check
+      shell: bash
       run: |
         : Perform the check
         export GRAFBASE_ACCESS_TOKEN={{ inputs.grafbase_access_token }}
