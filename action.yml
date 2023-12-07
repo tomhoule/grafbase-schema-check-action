@@ -36,12 +36,12 @@ runs:
         if [ -z "${{ inputs.grafbase_access_token }}" ]; then
           echo "The grafbase_access_token input is missing."
           exit 1
-        else
+        fi
 
         if [ -z "${{ inputs.project_ref }}" ]; then
           echo "The project_ref input is missing."
           exit 1
-        else
+        fi
 
     - id: download-cli
       shell: bash
