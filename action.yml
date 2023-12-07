@@ -20,6 +20,26 @@ inputs:
 runs:
   using: composite
   steps:
+    - id: validate-args
+      shell: |
+        ; Handle the schema input.
+        if [ -z "${{ inputs.schema }}" ]; then
+          echo "The schema input is missing."
+          exit 1
+        else
+          echo "${{ inputs.schema }}" > ./schema.graphql
+        fi
+
+        if [ -z "${{ inputs.grafbase_access_token }}" ]; then
+          echo "The grafbase_access_token input is missing."
+          exit 1
+        else
+
+        if [ -z "${{ inputs.project_ref }}" ]; then
+          echo "The project_ref input is missing."
+          exit 1
+        else
+
     - id: download-cli
       shell: bash
       run: |
