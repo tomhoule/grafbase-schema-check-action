@@ -19,5 +19,22 @@ inputs:
     required: true
   branch:
     description: The branch of the schema to check against. Defaults to the name of the PR target branch.
-  subgraph:
+  subgraph_name:
     description: The name of the subgraph to check. Only required in federated projects.
+
+runs:
+  steps:
+    - id: download-cli
+      run: |
+        : Download the Grafbase CLI
+        curl -L https://unpkg.com/@grafbase/cli-x86_64-unknown-linux-musl/grafbase > grafbase
+
+        : Test that the CLI binary works
+        ./grafbase --help
+
+    - id: check
+      run: |
+        : Perform the check
+        export GRAFBASE_ACCESS_TOKEN={{ inputs.grafbase_access_token }}
+        echo {{ inputs.schema }} > schema.graphql
+        ./grafbase check {{ inputs.account }}/{{ inputs.project }}@{{ inputs.branch }} --schema ./schema.graphql
