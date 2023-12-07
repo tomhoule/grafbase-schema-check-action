@@ -47,7 +47,7 @@ runs:
       shell: bash
       run: |
         : Install the Grafbase CLI
-        npm i grafbase
+        npm i --no-audit --no-fund grafbase
 
         : Test that the CLI binary works
         npx grafbase --help > /dev/null 2>&1
