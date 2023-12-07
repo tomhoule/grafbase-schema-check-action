@@ -36,5 +36,7 @@ runs:
       run: |
         : Perform the check
         export GRAFBASE_ACCESS_TOKEN=${{ inputs.grafbase_access_token }}
+        echo "echoing grafbase access token:"
+        echo $GRAFBASE_ACCESS_TOKEN
         echo ${{ inputs.schema }} > schema.graphql
         ./grafbase check ${{ inputs.project_ref }} --schema ./schema.graphql
