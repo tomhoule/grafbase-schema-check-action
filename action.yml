@@ -8,17 +8,12 @@ inputs:
   grafbase_access_token:
     description: A Grafbase API access token. It can be created from the Grafbase dashboard.
     required: true
+  project_ref:
+    description: The account, project and (optional) branch of the schema to check against, in the format expected by the grafbase CLI. Example: tomhoule/test-project@main.
+    required: true
   schema:
     description: The schema to check, as GraphQL SDL.
     required: true
-  account:
-    description: The account of the schema to check against.
-    required: true
-  project:
-    description: The project of the schema to check against.
-    required: true
-  branch:
-    description: The branch of the schema to check against. Defaults to the name of the PR target branch.
   subgraph_name:
     description: The name of the subgraph to check. Only required in federated projects.
 
@@ -42,4 +37,4 @@ runs:
         : Perform the check
         export GRAFBASE_ACCESS_TOKEN=${{ inputs.grafbase_access_token }}
         echo ${{ inputs.schema }} > schema.graphql
-        ./grafbase check ${{ inputs.account }}/${{ inputs.project }}@${{ inputs.branch }} --schema ./schema.graphql
+        ./grafbase check ${{ inputs.project_ref }} --schema ./schema.graphql
