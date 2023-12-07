@@ -17,18 +17,21 @@ inputs:
   subgraph_name:
     description: The name of the subgraph to check. Only required in federated projects.
 
+env:
+  SCHEMA_SDL: ${{ inputs.schema }}
+
 runs:
   using: composite
   steps:
     - id: validate-args
       shell: bash
       run: |
-        : Handle the schema input.
-        if [ -z "${{ inputs.schema }}" ]; then
+        : Handle the inputs.
+
+        echo $SCHEMA_SDL > ./schema.graphql
+        if [ ! -s ./schema.graphql ]; then
           echo "The schema input is missing."
           exit 1
-        else
-          echo "${{ inputs.schema }}" > ./schema.graphql
         fi
 
         if [ -z "${{ inputs.grafbase_access_token }}" ]; then
@@ -40,10 +43,6 @@ runs:
           echo "The project_ref input is missing."
           exit 1
         else
-
-    - id: write-schema
-      shell: bash
-      run: echo ${{ inputs.schema }} > schema.graphql
 
     - id: download-cli
       shell: bash
