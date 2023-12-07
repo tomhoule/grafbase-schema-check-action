@@ -41,8 +41,9 @@ runs:
           exit 1
         else
 
-    - shell: bash
-      run: echo ${{ inputs.schema }}
+    - id: write-schema
+      shell: bash
+      run: echo ${{ inputs.schema }} > schema.graphql
 
     - id: download-cli
       shell: bash
@@ -59,8 +60,4 @@ runs:
       shell: bash
       run: |
         : Perform the check
-        export GRAFBASE_ACCESS_TOKEN=${{ inputs.grafbase_access_token }}
-        echo "echoing grafbase access token:"
-        echo $GRAFBASE_ACCESS_TOKEN
-        echo ${{ inputs.schema }} > schema.graphql
-        ./grafbase check ${{ inputs.project_ref }} --schema ./schema.graphql
+        GRAFBASE_ACCESS_TOKEN=${{ inputs.grafbase_access_token }} ./grafbase check ${{ inputs.project_ref }} --schema ./schema.graphql
