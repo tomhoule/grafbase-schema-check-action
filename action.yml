@@ -46,13 +46,11 @@ runs:
     - id: download-cli
       shell: bash
       run: |
-        : Download the Grafbase CLI
-        curl -L https://unpkg.com/@grafbase/cli-x86_64-unknown-linux-musl/grafbase > grafbase
-
-        chmod +x grafbase
+        : Install the Grafbase CLI
+        npm i grafbase
 
         : Test that the CLI binary works
-        ./grafbase --help
+        npx grafbase --help &1> /dev/null &2> /dev/null
 
     - id: check
       shell: bash
@@ -61,4 +59,4 @@ runs:
         GRAFBASE_ACCESS_TOKEN: ${{ inputs.grafbase_access_token }}
       run: |
         : Perform the check
-        ./grafbase check ${{ inputs.project_ref }} --schema $SCHEMA_PATH
+        npx grafbase check ${{ inputs.project_ref }} --schema $SCHEMA_PATH
