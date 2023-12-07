@@ -9,7 +9,7 @@ inputs:
     description: A Grafbase API access token. It can be created from the Grafbase dashboard.
     required: true
   project_ref:
-    description: The account, project and (optional) branch of the schema to check against, in the format expected by the grafbase CLI. Example: tomhoule/test-project@main.
+    description: "The account, project and (optional) branch of the schema to check against, in the format expected by the grafbase CLI. Example: tomhoule/test-project@main."
     required: true
   schema:
     description: The schema to check, as GraphQL SDL.
