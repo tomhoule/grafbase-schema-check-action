@@ -21,7 +21,8 @@ runs:
   using: composite
   steps:
     - id: validate-args
-      shell: |
+      shell: bash
+      run: |
         ; Handle the schema input.
         if [ -z "${{ inputs.schema }}" ]; then
           echo "The schema input is missing."
@@ -40,7 +41,8 @@ runs:
           exit 1
         else
 
-    - run: echo ${{ inputs.schema }}
+    - shell: bash
+      run: echo ${{ inputs.schema }}
 
     - id: download-cli
       shell: bash
