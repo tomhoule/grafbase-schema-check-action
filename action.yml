@@ -40,6 +40,6 @@ runs:
       shell: bash
       run: |
         : Perform the check
-        export GRAFBASE_ACCESS_TOKEN={{ inputs.grafbase_access_token }}
-        echo {{ inputs.schema }} > schema.graphql
-        ./grafbase check {{ inputs.account }}/{{ inputs.project }}@{{ inputs.branch }} --schema ./schema.graphql
+        export GRAFBASE_ACCESS_TOKEN=${{ inputs.grafbase_access_token }}
+        echo ${{ inputs.schema }} > schema.graphql
+        ./grafbase check ${{ inputs.account }}/${{ inputs.project }}@${{ inputs.branch }} --schema ./schema.graphql
