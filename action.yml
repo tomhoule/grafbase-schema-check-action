@@ -31,6 +31,8 @@ runs:
         : Download the Grafbase CLI
         curl -L https://unpkg.com/@grafbase/cli-x86_64-unknown-linux-musl/grafbase > grafbase
 
+        chmod +x grafbase
+
         : Test that the CLI binary works
         ./grafbase --help
 
