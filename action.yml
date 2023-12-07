@@ -23,7 +23,7 @@ runs:
     - id: validate-args
       shell: bash
       run: |
-        ; Handle the schema input.
+        : Handle the schema input.
         if [ -z "${{ inputs.schema }}" ]; then
           echo "The schema input is missing."
           exit 1
